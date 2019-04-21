@@ -8,6 +8,13 @@ RSpec.describe 'Contacts', type: :request, capture_example: true do
       produces 'application/json'
       tags :contacts
       let!(:contacts) { create_list(:contacts, 10) }
+
+      response(200, description: 'Return all available contacts') do
+        it 'Returns 10 contacts' do
+          body = JSON(response.body)
+          expect(body.count).to eq(10)
+        end
+      end
     end
   end
 end
