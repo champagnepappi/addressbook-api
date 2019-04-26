@@ -16,5 +16,30 @@ RSpec.describe 'Contacts', type: :request, capture_example: true do
         end
       end
     end
+
+    post(summary: 'Create contact') do
+      consumes 'application/json'
+      produces 'application/json'
+      tags :contacts
+      parameter :data,
+        in: :body,
+        required: true,
+        schema: {
+          '$ref' => '#/definitions/createContact'
+        }
+      
+      response(201, description: 'Contact created') do
+        let(:data) do
+          {
+            data: {
+              name: 'Ruby Maphia',
+              phone: '+254 712345678',
+              email: 'rmaphia@gmail.com',
+              address: 'P.O BOX 1234567 NY'
+            }
+          }
+        end
+      end
+    end
   end
 end
