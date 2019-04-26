@@ -14,7 +14,21 @@ RSpec.configure do |config|
         version: 'v1'
       },
       definitions: {
-
+        createContact: {
+          type: :object,
+          properties: {
+            data: {
+              type: :object,
+              required: %i[name phone email address],
+              properties: {
+                name: { type: :string, example: 'santos' },
+                phone: { type: :string, example: '+254 712345678' },
+                email: { type: :string, example: 'santos@gmail.com' },
+                address: { type: :string, example: 'P.O BOX 123456' }
+              }
+            }
+          }
+        }
       }
     }
   }
